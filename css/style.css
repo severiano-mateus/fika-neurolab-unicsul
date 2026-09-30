@@ -1,31 +1,81 @@
 @charset "UTF-8";
 
 /* ==========================================================================
-ROOT STYLES
+1. ROOT / VARIÁVEIS DE ESTILO (PADRÃO SOFT E CORES EM HSL)
 ========================================================================== */
 :root {
-/* Fonte */
+    /* Tipografia e Tamanho Base */
     --font-primary: 'Inter', sans-serif;
     --font-size: 1rem;
 
-/* Cor Default */
-    --primary-color: hsl(205, 55%, 32%);
-    --secondary-color: hsl(49, 41%, 87%);
-    --cor-menu-hover: hsl(205, 31%, 85%);    
-    --cor-nav: hsl(202, 39%, 53%);
-    --cor-preto: hsl(0, 0%, 10%);
-    --cor-branco: hsl(0, 0%, 98%);
-    --cor-cinzaclaro: hsl(0, 0%, 40%);
-    --cor-cinzaescuro: hsl(0, 0%, 15%);
-    --cor-verde: hsl(140, 55%, 40%);
-    --cor-coluna-direita: hsl(205, 55%, 32%);
-    --cor-vermelho: hsl(0, 73%, 31%);
+    /* Cores da Identidade Visual (Topo e Menus) */
+    --primary-color: hsl(205, 55%, 32%);   /* Azul escuro: Header e Títulos principais */
+    --cor-nav: hsl(202, 39%, 53%);          /* Azul médio: Barra de navegação flutuante */
+    --cor-menu-hover: hsl(205, 31%, 85%);  /* Azul claro: Fundo ao passar o mouse nos menus */
 
+    /* Cores Neutras de Estrutura e Texto */
+    --secondary-color: hsl(205, 20%, 96%);  /* Tom azulado/creme neutro em sintonia com a paleta */
+    --cor-branco: hsl(0, 0%, 98%);          /* Branco suave: Fundo dos cards e formulários */
+    --cor-preto: hsl(0, 0%, 10%);           /* Preto: Foco e destaques */
+    --cor-cinzaescuro: hsl(205, 15%, 20%);    /* Cinza escuro azulado: Texto principal de leitura */
+    --cor-cinzaclaro: hsl(205, 10%, 65%);     /* Cinza médio neutro: Bordas de inputs e apoio */
+
+    /* Ações e Botões */
+    --cor-verde: hsl(150, 50%, 38%);        /* Verde suavizado e equilibrado para botões */
+
+    /* Feedback de Validação e Mensagens */
+    --cor-erro: hsl(354, 70%, 54%);         /* Vermelho suave para erros */
+    --cor-erro-claro: hsl(354, 80%, 96%);   /* Vermelho claro: Fundo de alertas de erro */
+    --cor-sucesso-claro: hsl(150, 45%, 94%);/* Verde claro: Fundo de alertas de sucesso */
+    --cor-alerta: hsl(38, 92%, 50%);        /* Amarelo: Avisos e alertas */
 }
 
-/**==================================*==================================*====
-SISTEMA GRID 12 COLUNAS
-=====*==================================*================================= */
+/* ==========================================================================
+2. RESET E REGRAS GERAIS
+========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body.corpo {
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size);
+}
+
+/* Modo Alto Contraste */
+body.alto-contraste {
+    background-color: hsl(0, 0%, 0%) !important;
+    color: hsl(0, 0%, 100%) !important;
+}
+
+body.alto-contraste main#conteudo-principal section,
+body.alto-contraste aside#coluna-lateral,
+body.alto-contraste footer#rodape {
+    background-color: hsl(0, 0%, 7%) !important;
+    color: hsl(0, 0%, 100%) !important;
+    border: 1px solid hsl(0, 0%, 100%);
+}
+
+body.alto-contraste h1, 
+body.alto-contraste h2, 
+body.alto-contraste p, 
+body.alto-contraste label {
+    color: hsl(0, 0%, 100%) !important;
+}
+
+div#interface {
+    width: 100%;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 0 1.25rem 2rem 1.25rem;
+}
+
+/* ==========================================================================
+3. SISTEMA GRID
+========================================================================== */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -33,29 +83,55 @@ SISTEMA GRID 12 COLUNAS
     width: 100%;
 }
 
-.grid-full {
-    grid-column: span 12;
+.grid-full { grid-column: span 12; }
+.grid-8    { grid-column: span 8; }
+.grid-6    { grid-column: span 6; }
+.grid-4    { grid-column: span 4; }
+.grid-3    { grid-column: span 3; }
+
+@media (max-width: 48rem) {
+    .grid-8, .grid-4 {
+        grid-column: span 12;
+    }
 }
 
-.grid-8 {
-    grid-column: span 8;
-}
-
-.grid-6 {
-    grid-column: span 6;
-}
-
-.grid-4 {
-    grid-column: span 4;
-}
-
-.grid-3 {
-    grid-column: span 3;
+@media (min-width: 48.0625rem) and (max-width: 64rem) {
+    .grid-8 { grid-column: span 7; }
+    .grid-4 { grid-column: span 5; }
 }
 
 /* ==========================================================================
-SKIP LINK (Acessibilidade)
+4. ACESSIBILIDADE E FOCO
 ========================================================================== */
+.barra-acessibilidade {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 0.5rem 1.25rem;
+    background-color: hsl(205, 55%, 22%);
+    box-shadow: 0 0 0 100vw hsl(205, 55%, 22%);
+    clip-path: inset(0 -100vw);
+}
+
+.barra-acessibilidade button {
+    background-color: var(--primary-color);
+    color: var(--cor-branco);
+    border: 1px solid hsla(0, 0%, 100%, 0.2);
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, filter 0.2s ease;
+}
+
+.barra-acessibilidade button:hover {
+    background-color: var(--cor-nav);
+    color: var(--cor-branco);
+}
 
 .skip-link {
     position: absolute;
@@ -75,9 +151,6 @@ SKIP LINK (Acessibilidade)
     top: 1rem;
 }
 
-/* ==========================================================================
-ACESSIBILIDADE DE FOCO E TECLADO
-========================================================================== */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -95,7 +168,7 @@ textarea:focus-visible {
 }
 
 /* ==========================================================================
-ESTILO DO CABEÇALHO
+5. CABEÇALHO
 ========================================================================== */
 header#cabecalho {
     background-color: var(--primary-color);
@@ -103,7 +176,7 @@ header#cabecalho {
     max-width: 85rem;
     min-height: 14rem;
     margin: 0 auto;
-    padding: 1.5rem 1.25rem;
+    padding: 1.5rem 1.25rem 3rem 1.25rem;
 
     display: flex;
     justify-content: space-between;
@@ -114,7 +187,6 @@ header#cabecalho {
     clip-path: inset(0 -100vw);
 }
 
-/* Estilo H1 */
 header#cabecalho h1 {
     color: var(--cor-branco);
     font-family: var(--font-primary);
@@ -125,7 +197,6 @@ header#cabecalho h1 {
     margin: 0;
 }
 
-/* Estilo do logo.png do cabeçalho */
 header#cabecalho .logo-cabecalho {
     max-height: 12rem;
     width: auto;
@@ -133,248 +204,304 @@ header#cabecalho .logo-cabecalho {
     border-radius: 0.5rem;
 }
 
+@media (max-width: 30rem) {
+    header#cabecalho h1 {
+        font-size: 1.8rem;
+    }
+}
 
 /* ==========================================================================
-ESTILO DA BARRA DE NAVEGAÇÃO
+6. NAVEGAÇÃO FLUTUANTE
 ========================================================================== */
 nav#menu {
     display: block;
-    background-color: var(--cor-nav);
     width: 100%;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    max-width: 85rem;
+    margin: -1.5rem auto 1.5rem auto;
+    background-color: var(--cor-nav);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.375rem 1rem hsla(0, 0%, 0%, 0.15);
+    position: relative;
+    z-index: 500;
 }
 
-/* A lista de links alinhada ao centro */
-nav#menu ul {
+.menu-toggle,
+.menu-icon,
+.menu-close-btn {
+    display: none;
+}
+
+nav#menu ul.menu-principal {
     list-style: none;
-    text-transform: uppercase;
+    margin: 0;
+    padding: 0.5rem 1rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
-    max-width: 85rem;
-    margin: 0 auto;
-    padding: 0.75rem 1.25rem;
+    gap: 0.5rem;
 }
 
-/* Alinhamento lista */
-nav#menu li {
-    display: flex;
-    align-items: center;
+nav#menu ul.menu-principal > li {
+    position: relative;
 }
 
-/* Estilo dos links */
-nav#menu a {
+nav#menu ul.menu-principal > li > a {
+    display: inline-block;
     color: var(--cor-branco);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9375rem;
-    padding: 0.5rem 0.875rem;
+    text-transform: uppercase;
+    padding: 0.625rem 1.125rem;
     border-radius: 0.25rem;
-    -webkit-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Efeito Hover */
-nav#menu a:hover {
+nav#menu ul.menu-principal > li > a:hover,
+nav#menu ul.menu-principal > li > a:focus-visible {
     background-color: var(--cor-menu-hover);
     color: var(--cor-cinzaescuro);
 }
 
-nav#menu a:focus-visible {
+nav#menu a.menu-ativo {
     background-color: var(--cor-menu-hover);
-    color: var(--cor-cinzaescuro);
-}
-
-/* Cor de destaque da página atual */
-nav#menu ul li a.menu-ativo {
-    background-color: var(--cor-menu-hover);
-    color: var(--cor-preto);
-    border-bottom: 0.2rem solid var(--cor-preto);
+    color: var(--cor-preto) !important;
     font-weight: 700;
 }
 
-/* ==========================================================================
-ESTILO DO CONTEÚDO PRINCIPAL: Corpo da Página
-========================================================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-body.corpo {
-    background-color: var(--secondary-color);
-    min-height: 100vh;
+/* SUBMENU DROPDOWN */
+nav#menu ul.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--cor-nav);
+    min-width: 13rem;
+    list-style: none;
     margin: 0;
-    font-family: var(--font-primary);
-    font-size: var(--font-size);
+    padding: 0.5rem 0;
+    border-radius: 0 0 0.375rem 0.375rem;
+    box-shadow: 0 0.5rem 1.25rem hsla(0, 0%, 0%, 0.2);
+    z-index: 600;
 }
 
-/* Estilo de dimensões e sombras do corpo */
-div#interface {
+nav#menu ul.menu-principal > li:hover > ul.submenu,
+nav#menu ul.menu-principal > li:focus-within > ul.submenu {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
-    width: 100%;
-    max-width: 85rem;
-    margin: 0 auto;
-    padding: 1.25rem 1.25rem 2rem 1.25rem;
+    flex-direction: column;
 }
 
-/* Coluna Conteúdo Principal */
+nav#menu ul.submenu li {
+    width: 100%;
+}
+
+nav#menu ul.submenu a {
+    display: block;
+    color: var(--cor-branco);
+    text-decoration: none;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    text-transform: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav#menu ul.submenu a:hover,
+nav#menu ul.submenu a:focus-visible {
+    background-color: var(--cor-menu-hover);
+    color: var(--cor-cinzaescuro);
+}
+
+/* ==========================================================================
+7. MENU MOBILE RESPONSIVO
+========================================================================== */
+@media (max-width: 48rem) {
+    nav#menu {
+        margin: 1rem auto;
+    }
+
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .menu-icon {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.875rem 1.25rem;
+        color: var(--cor-branco);
+        font-weight: 700;
+        cursor: pointer;
+        user-select: none;
+        width: 100%;
+    }
+
+    nav#menu ul.menu-principal {
+        position: fixed !important;
+        top: 0;
+        right: -100% !important;
+        width: 17.5rem;
+        height: 100vh;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 1.25rem;
+        gap: 0;
+        box-shadow: -0.5rem 0 1.5rem hsla(0, 0%, 0%, 0.35);
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 99999;
+    }
+
+    #menu-toggle:checked ~ ul.menu-principal {
+        right: 0 !important;
+    }
+
+    /* Container do botão de fechar para garantir espaço e alinhamento */
+    nav#menu ul.menu-principal > li.menu-close-container {
+        display: block;
+        position: relative;
+        height: 3rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 0.0625rem solid hsla(0, 0%, 100%, 0.12);
+    }
+
+    /* Botão de fechar (X) corrigido e sem sobreposição */
+    .menu-close-btn {
+        display: block !important;
+        position: absolute;
+        top: 50%;
+        right: 0.5rem;
+        transform: translateY(-50%);
+        color: var(--cor-branco);
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        z-index: 10;
+    }
+
+    nav#menu ul.menu-principal > li {
+        width: 100%;
+    }
+
+    nav#menu ul.menu-principal > li > a {
+        width: 100%;
+        margin: 0;
+        padding: 1rem 0.5rem;
+        border-radius: 0;
+        border-bottom: 0.0625rem solid hsla(0, 0%, 100%, 0.12);
+    }
+
+    nav#menu ul.submenu {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        background-color: hsla(0, 0%, 0%, 0.2);
+        padding: 0 0 0 1rem;
+        border-radius: 0;
+    }
+}
+
+/* ==========================================================================
+8. CONTEÚDO PRINCIPAL
+========================================================================== */
 main#conteudo-principal {
     text-align: justify;
-    flex: 1 1 40rem;
-    min-width: 18.75rem;
-    background-color: var(--cor-branco);
-    padding: 3rem;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
 }
 
-/* Regra Geral para os Títulos e Parágrafos do Conteúdo Principal */
+main#conteudo-principal section {
+    background-color: var(--cor-branco);
+    padding: 2.5rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0.25rem 0.75rem hsla(0, 0%, 0%, 0.1);
+    margin-bottom: 1.5rem;
+}
+
 main#conteudo-principal h2 {
     font-size: 1.25rem;
     text-align: left;
     color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+main#conteudo-principal section.apresentacao h2 {
+    font-size: 2rem;
+    color: var(--cor-preto);
 }
 
 main#conteudo-principal p {
     color: var(--cor-cinzaescuro);
     line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.img-apresentacao {
+    float: right;
+    width: 140px;
+    height: auto;
+    margin: 0 0 1rem 1.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px hsla(0, 0%, 0%, 0.1));
+}
+
+@media (max-width: 48rem) {
+    .img-apresentacao {
+        float: none;
+        display: block;
+        margin: 0 auto 1.5rem auto;
+        width: 120px;
+    }
 }
 
 /* ==========================================================================
-ESTILO DAS SEÇÕES
-========================================================================== */
-main#conteudo-principal section.apresentacao h2 {
-    font-size: 2rem;
-    text-align: left;
-    color: var(--cor-preto);
-}
-
-/* ==========================================================================
-ESTILO DA SEÇÃO DE ENGAJAMENTO (FORMULÁRIO DE CADASTRO)
-========================================================================== */
-section.engajamento {
-    margin-top: 1.5rem;
-}
-
-section.engajamento form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-section.engajamento fieldset {
-    border: 0.0625rem solid var(--cor-cinzaclaro);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    background-color: var(--cor-branco);
-}
-
-section.engajamento legend {
-    font-weight: 600;
-    color: var(--primary-color);
-    padding: 0 0.5rem;
-    font-size: 1.1rem;
-}
-
-section.engajamento label {
-    display: block;
-    color: var(--cor-cinzaescuro);
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
-}
-
-section.engajamento input,
-section.engajamento select {
-    width: 100%;
-    padding: 0.625rem;
-    border: 0.0625rem solid var(--cor-cinzaclaro);
-    border-radius: 0.25rem;
-    font-family: inherit;
-    font-size: 0.875rem;
-    color: var(--cor-cinzaescuro);
-    background-color: var(--cor-branco);
-}
-
-section.engajamento button[type="submit"] {
-    width: 100%;
-    margin-top: 1.25rem;
-    padding: 0.75rem;
-    background-color: var(--primary-color);
-    color: var(--cor-branco);
-    border: none;
-    border-radius: 0.25rem;
-    font-family: inherit;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: filter 0.2s ease;
-}
-
-section.engajamento button[type="submit"]:hover {
-    filter: brightness(1.1);
-}
-
-/* ==========================================================================
-ESTILO DA COLUNA LATERAL DIREITA
+9. COLUNA LATERAL (ASIDE E FORMULÁRIO)
 ========================================================================== */
 aside#coluna-lateral {
-    flex: 0 0 20rem;
     display: flex;
     flex-direction: column;
     padding: 1.5rem; 
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    background-color: var(--cor-branco);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.25rem 0.75rem hsla(0, 0%, 0%, 0.1);
+    height: fit-content;
+    gap: 1.5rem;
 }
 
-/* Títulos da Coluna Lateral */
 aside#coluna-lateral h2 {
     font-size: 1.25rem;
     color: var(--cor-cinzaescuro);
     margin-bottom: 0.05rem;
 }
 
-/* Textos e Parágrafos da Coluna Lateral */
 aside#coluna-lateral p {
     color: var(--cor-cinzaescuro);
     font-size: 0.9375rem;
     line-height: 1.5;
 }
 
-/* ==========================================================================
-ESTRUTURA DO FORMULÁRIO: formulário contido na coluna lateral
-========================================================================== */
-aside#coluna-lateral form {
+form {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-/* Rótulos dos campos do formulário */
-aside#coluna-lateral label {
+label {
     color: var(--cor-cinzaescuro);
     font-size: 0.875rem;
     font-weight: 600;
     margin-top: 0.875rem;
     margin-bottom: 0.25rem;
+    display: block;
 }
 
-/* Campos de entrada (Input, Select e Textarea) */
-aside#coluna-lateral input,
-aside#coluna-lateral select,
-aside#coluna-lateral textarea {
+input, select, textarea {
     width: 100%;
     padding: 0.625rem;
     border: 0.0625rem solid var(--cor-cinzaclaro);
@@ -383,12 +510,47 @@ aside#coluna-lateral textarea {
     font-size: 0.875rem;
     color: var(--cor-cinzaescuro);
     background-color: var(--cor-branco);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Estilo do Botão */
-aside#coluna-lateral button {
+input.campo-valido, textarea.campo-valido, select.campo-valido {
+    border-color: var(--cor-verde) !important;
+}
+
+input.campo-invalido, textarea.campo-invalido, select.campo-invalido {
+    border-color: var(--cor-erro) !important;
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.1875rem hsla(205, 55%, 32%, 0.2);
+}
+
+fieldset {
+    border: 1px solid var(--cor-cinzaclaro);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+legend {
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 0.5rem;
+}
+
+.field-error-text {
+    display: none;
+    font-size: 0.75rem;
+    color: var(--cor-erro);
+    margin-top: 0.2rem;
+    font-weight: 600;
+}
+
+button[type="submit"] {
     width: 100%;
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
     padding: 0.75rem;
     background-color: var(--cor-verde);
     color: var(--cor-branco);
@@ -401,21 +563,58 @@ aside#coluna-lateral button {
     transition: filter 0.2s ease;
 }
 
-aside#coluna-lateral button:hover {
+button[type="submit"]:hover {
     filter: brightness(1.1);
 }
 
+/* Sobre o Autor */
+div.sobre-autor {
+    border-top: 0.0625rem solid var(--cor-cinzaclaro);
+    padding-top: 1.25rem;
+}
+
+div.sobre-autor h2 {
+    color: var(--primary-color);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+div.sobre-autor .autor-nome {
+    font-weight: 700;
+    color: var(--cor-preto);
+    margin-bottom: 0.5rem;
+}
+
+div.sobre-autor p {
+    font-size: 0.875rem;
+    color: var(--cor-cinzaescuro);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
 /* ==========================================================================
-ESTILO DO RODAPÉ
+10. COMPONENTES E RODAPÉ
 ========================================================================== */
+.alert {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9375rem;
+}
+
+.alert-success {
+    background-color: var(--cor-sucesso-claro);
+    border-left: 0.25rem solid var(--cor-verde);
+    color: var(--cor-verde);
+}
+
 footer#rodape {
     width: 100%;
     margin: 0;
     padding: 1.5rem 1.25rem;
     background-color: var(--cor-branco);
-    border-bottom-left-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.25rem 0.75rem hsla(0, 0%, 0%, 0.1);
     text-align: center;
     font-size: 0.875rem;
     color: var(--cor-cinzaescuro);
