@@ -3,89 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto: Fika Neurolab</title>
-<!-- Link para o arquivo CSS externo -->
+    <title>Projeto: Fika NeuroLab</title>
+    <!-- Link para o arquivo CSS externo -->
     <link rel="stylesheet" href="./css/style.css">
-<!-- Link para Fontes do Google -->
+    <!-- Link para Fontes do Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
-<!-- Início do corpo da página -->
 <body class="corpo"> 
 
-<!-- Cabeçalho: H1 -->
+    <!-- Atalho de acessibilidade para leitores de ecrã -->
+    <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
+
+    <!-- Barra de Acessibilidade -->
+    <div class="barra-acessibilidade">
+        <button type="button" id="btn-aumentar-fonte" aria-label="Aumentar fonte">A+</button>
+        <button type="button" id="btn-diminuir-fonte" aria-label="Diminuir fonte">A-</button>
+        <button type="button" id="btn-alto-contraste" aria-label="Alternar alto contraste">Alto Contraste</button>
+    </div>
+
+    <!-- Cabeçalho: H1 -->
     <header id="cabecalho">
         <h1>PROJETO UNICSUL EAD:<br>Fika NeuroLab</h1>
-<!-- Cabeçalho: Logo -->      
-        <img src="./img/logo.png"
-        alt="Logo do Fika NeuroLab"
-        class="logo-cabecalho">
+        <!-- Cabeçalho: Logo -->      
+        <img src="./img/logo.png" alt="Logo do Fika NeuroLab" class="logo-cabecalho" onerror="this.style.display='none'">
     </header>
 
-<!-- Menu de Navegação onde as páginas são acessíveis -->
+    <!-- Menu de Navegação Flutuante com Submenu e Drawer Mobile à Direita -->
     <nav id="menu" aria-label="Menu de Navegação das Páginas">
-        <ul>
-            <li><a href="./index.html" class="menu-ativo">Início</a></li>
-            <li><a href="./projetos.html">Projetos</a></li>
-            <li><a href="./cadastro.html">Cadastro</a></li>
+        <!-- Checkbox para alternar menu no mobile -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de navegação">
+        
+        <!-- Botão hambúrguer visível apenas no mobile -->
+        <label for="menu-toggle" class="menu-icon">
+            <span>MENU</span>
+            <span>&#9776;</span>
+        </label>
+
+        <ul class="menu-principal">
+            <!-- Botão de fechar contido dentro de um item de lista (li) válido -->
+            <li class="menu-close-container">
+                <label for="menu-toggle" class="menu-close-btn">&times;</label>
+            </li>
+
+            <li><a href="javascript:void(0)" data-pagina="inicio" class="menu-ativo">Início</a></li>
+            <li>
+                <a href="javascript:void(0)" data-pagina="projetos">Projetos</a>
+                <!-- Submenu Dropdown -->
+                <ul class="submenu">
+                    <li><a href="javascript:void(0)" data-pagina="projetos" data-ancora="inclusao">Inclusão Digital</a></li>
+                    <li><a href="javascript:void(0)" data-pagina="projetos" data-ancora="mentorias">Mentorias</a></li>
+                    <li><a href="javascript:void(0)" data-pagina="projetos" data-ancora="parcerias">Parcerias</a></li>
+                </ul>
+            </li>
+            <li><a href="javascript:void(0)" data-pagina="cadastro">Cadastro</a></li>
+            <li><a href="javascript:void(0)" data-pagina="sobre">Sobre o Autor</a></li>
         </ul>
     </nav>
 
-<!-- Conteúdo Principal e Lateral da Interface -->
-    <div id="interface">
-        <main id="conteudo-principal">
-<!-- 1° Seção: Apresentação - Destaque -->
-            <section class="apresentacao">
-                <h2>Inclusão e Diversidade<br>Cognitiva no Mercado de Tecnologia</h2>
-                <p>Conectando a pluralidade de mentes neurodivergentes a oportunidades reais em TI, promovendo autonomia, equidade e transformação cultural nas empresas.</p>
-                <p><em>O <strong>Fika NeuroLab</strong> é uma organização sem fins lucrativos que nasceu para impulsionar a inclusão de pessoas no espectro autista (TEA) e neurodivergentes no mercado de trabalho. Entendemos que a verdadeira inovação no universo da Tecnologia da Informação só é possível através da diversidade de mentes e vivências. Atuamos para transformar os processos seletivos tradicionais, preparando profissionais para o mercado e capacitando empresas para construírem culturas corporativas genuinamente acolhedoras e acessíveis.</em></p> 
-            </section>
-<!-- 2° Seção: Visão e Impacto -->
-            <section>
-                <h2>Impacto e Transformação Digital</h2>
-                <p>Acreditamos que a neurodiversidade é um motor de inovação. Profissionais autistas e neurodivergentes trazem perspectivas únicas, alta capacidade de foco, pensamento analítico e habilidades de resolução de problemas que transformam o ecossistema de Tecnologia da Informação.</p>
-            </section>
-<!-- 3° Seção: Nossos Pilares de Atuação -->
-            <section>
-                <h2>Nossos Pilares de Atuação</h2>
-                <p>Para construir pontes sólidas entre talentos e o mercado de trabalho, atuamos em três frentes estratégicas: a capacitação técnica e comportamental de profissionais, a consultoria para adaptação de processos seletivos e a conscientização das lideranças corporativas.</p>
-            </section>
-<!-- 4° Seção: Como Apoiamos Profissionais e Empresas -->
-              <section>
-                <h2>Apoiando Mentes e Conectando Futuros</h2>
-                <p>Oferecemos suporte contínuo desde o mentorado individual até a integração completa nas equipes de desenvolvimento. Para as empresas parceiras, fornecemos treinamentos e acompanhamento especializado para garantir um ambiente acessível, acolhedor e de alta performance.</p>
-            </section>
-        </main>
-<!-- Coluna Aside: Formulário de Contato -->
-        <aside id="coluna-lateral">
-           <section class="bloco-lateral">
-        <h3>Envie sua Sugestão</h3>
-        <p>Tem alguma ideia, feedback ou melhoria para o Fika NeuroLab? Deixe sua sugestão abaixo:</p>
-        
-        <form action="#" method="POST">
-            <label for="sugestao-nome">Seu Nome</label>
-            <input type="text" id="sugestao-nome" name="nome" required placeholder="Digite seu nome">
+    <!-- Conteúdo Principal e Lateral estruturados com Grid de 12 colunas -->
+    <div id="interface" class="grid-container">
+        <!-- Conteúdo Injetado Dinamicamente via SPA Router no JS -->
+        <main id="conteudo-principal" class="grid-8" tabindex="-1"></main>
 
-            <label for="sugestao-email">Seu E-mail</label>
-            <input type="email" id="sugestao-email" name="email" required placeholder="seuemail@dominio.com">
+        <!-- Coluna Lateral Direita -->
+        <aside id="coluna-lateral" class="grid-4">
+            <!-- Formulário -->            
+            <h2>Precisa de Ajuda?</h2>
+            <p>Entre em contacto com a nossa equipa de suporte e inclusão para tirar dúvidas sobre mentorias e parcerias.</p>
+            
+            <form id="form-contato-ajuda" novalidate>
+                <div class="alert alert-success" style="display: none;" id="mensagem-sucesso">
+                    Mensagem enviada com sucesso! Os seus dados foram guardados no localStorage.
+                </div>
 
-            <label for="sugestao-texto">Sua Sugestão</label>
-            <textarea id="sugestao-texto" name="sugestao" rows="4" required placeholder="Escreva sua sugestão aqui..."></textarea>
+                <label for="nome-ajuda">Nome:</label>
+                <input type="text" id="nome-ajuda" name="nome" required placeholder="Seu nome completo">
+                <span class="field-error-text">O nome deve conter pelo menos 3 caracteres.</span>
 
-            <button type="submit">Enviar Sugestão</button>
+                <label for="email-ajuda">E-mail:</label>
+                <input type="email" id="email-ajuda" name="email" required placeholder="seu@email.com">
+                <span class="field-error-text">Insira um e-mail válido.</span>
+
+                <label for="mensagem-ajuda">Mensagem:</label>
+                <textarea id="mensagem-ajuda" name="mensagem" rows="4" required placeholder="Escreva sua mensagem..."></textarea>
+                <span class="field-error-text">A mensagem não pode estar vazia.</span>
+
+                <button type="submit">Enviar Mensagem</button>
             </form>
-            </section>
+
+            <!-- Seção Sobre o Autor incorporada na coluna lateral -->
+            <div class="sobre-autor">
+                <h2>Sobre o Autor</h2>
+                <p class="autor-nome">Mateus Severiano</p>
+                <p>Sempre fui uma criança curiosa, daquelas cheias de "porquês". Aprendi a ler cedo e, aos 13 anos, encontrei no <strong>RPG Maker</strong> a forma perfeita de unir as histórias e mundos que criava na infância com a programação.</p>
+                <p>Movido pela paixão por design e tecnologia, aos 16 anos lancei meu primeiro projeto web, o <strong>Cantinho Pokémon</strong>. Hoje, sigo essa jornada acadêmica e profissional transformando ideias em meus projetos.</p>
+            </div>
         </aside>
     </div>
 
-<!-- Rodapé da Página -->
+    <!-- Rodapé da Página -->
     <footer id="rodape">
         <p>Copyright &copy; 2026 - Autor: Mateus Severiano |
             <br><em>Projeto UNICISUL: FIKA NEUROLAB</em>
         </p>
     </footer>
 
+    <!-- Link para o arquivo JavaScript externo -->
+    <script src="./js/script.js"></script>
 </body>
 </html>
