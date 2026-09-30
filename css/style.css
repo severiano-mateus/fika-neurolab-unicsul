@@ -1,0 +1,422 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+ROOT STYLES
+========================================================================== */
+:root {
+/* Fonte */
+    --font-primary: 'Inter', sans-serif;
+    --font-size: 1rem;
+
+/* Cor Default */
+    --primary-color: hsl(205, 55%, 32%);
+    --secondary-color: hsl(49, 41%, 87%);
+    --cor-menu-hover: hsl(205, 31%, 85%);    
+    --cor-nav: hsl(202, 39%, 53%);
+    --cor-preto: hsl(0, 0%, 10%);
+    --cor-branco: hsl(0, 0%, 98%);
+    --cor-cinzaclaro: hsl(0, 0%, 40%);
+    --cor-cinzaescuro: hsl(0, 0%, 15%);
+    --cor-verde: hsl(140, 55%, 40%);
+    --cor-coluna-direita: hsl(205, 55%, 32%);
+    --cor-vermelho: hsl(0, 73%, 31%);
+
+}
+
+/**==================================*==================================*====
+SISTEMA GRID 12 COLUNAS
+=====*==================================*================================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.grid-full {
+    grid-column: span 12;
+}
+
+.grid-8 {
+    grid-column: span 8;
+}
+
+.grid-6 {
+    grid-column: span 6;
+}
+
+.grid-4 {
+    grid-column: span 4;
+}
+
+.grid-3 {
+    grid-column: span 3;
+}
+
+/* ==========================================================================
+SKIP LINK (Acessibilidade)
+========================================================================== */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    background-color: var(--cor-branco);
+    color: var(--cor-preto);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 0.125rem solid var(--cor-preto);
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+/* ==========================================================================
+ACESSIBILIDADE DE FOCO E TECLADO
+========================================================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 0.1875rem solid var(--cor-preto);
+    outline-offset: 0.1875rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+ESTILO DO CABEÇALHO
+========================================================================== */
+header#cabecalho {
+    background-color: var(--primary-color);
+    width: 100%;
+    max-width: 85rem;
+    min-height: 14rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+
+    box-shadow: 0 0 0 100vw var(--primary-color);
+    clip-path: inset(0 -100vw);
+}
+
+/* Estilo H1 */
+header#cabecalho h1 {
+    color: var(--cor-branco);
+    font-family: var(--font-primary);
+    font-size: 2.75rem;
+    font-weight: 150;
+    text-align: left;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Estilo do logo.png do cabeçalho */
+header#cabecalho .logo-cabecalho {
+    max-height: 12rem;
+    width: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+
+/* ==========================================================================
+ESTILO DA BARRA DE NAVEGAÇÃO
+========================================================================== */
+nav#menu {
+    display: block;
+    background-color: var(--cor-nav);
+    width: 100%;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+/* A lista de links alinhada ao centro */
+nav#menu ul {
+    list-style: none;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+}
+
+/* Alinhamento lista */
+nav#menu li {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo dos links */
+nav#menu a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.25rem;
+    -webkit-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito Hover */
+nav#menu a:hover {
+    background-color: var(--cor-menu-hover);
+    color: var(--cor-cinzaescuro);
+}
+
+nav#menu a:focus-visible {
+    background-color: var(--cor-menu-hover);
+    color: var(--cor-cinzaescuro);
+}
+
+/* Cor de destaque da página atual */
+nav#menu ul li a.menu-ativo {
+    background-color: var(--cor-menu-hover);
+    color: var(--cor-preto);
+    border-bottom: 0.2rem solid var(--cor-preto);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+ESTILO DO CONTEÚDO PRINCIPAL: Corpo da Página
+========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body.corpo {
+    background-color: var(--secondary-color);
+    min-height: 100vh;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size);
+}
+
+/* Estilo de dimensões e sombras do corpo */
+div#interface {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    max-width: 85rem;
+    margin: 0 auto;
+    padding: 1.25rem 1.25rem 2rem 1.25rem;
+}
+
+/* Coluna Conteúdo Principal */
+main#conteudo-principal {
+    text-align: justify;
+    flex: 1 1 40rem;
+    min-width: 18.75rem;
+    background-color: var(--cor-branco);
+    padding: 3rem;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+/* Regra Geral para os Títulos e Parágrafos do Conteúdo Principal */
+main#conteudo-principal h2 {
+    font-size: 1.25rem;
+    text-align: left;
+    color: var(--primary-color);
+}
+
+main#conteudo-principal p {
+    color: var(--cor-cinzaescuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+ESTILO DAS SEÇÕES
+========================================================================== */
+main#conteudo-principal section.apresentacao h2 {
+    font-size: 2rem;
+    text-align: left;
+    color: var(--cor-preto);
+}
+
+/* ==========================================================================
+ESTILO DA SEÇÃO DE ENGAJAMENTO (FORMULÁRIO DE CADASTRO)
+========================================================================== */
+section.engajamento {
+    margin-top: 1.5rem;
+}
+
+section.engajamento form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+section.engajamento fieldset {
+    border: 0.0625rem solid var(--cor-cinzaclaro);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--cor-branco);
+}
+
+section.engajamento legend {
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+section.engajamento label {
+    display: block;
+    color: var(--cor-cinzaescuro);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+section.engajamento input,
+section.engajamento select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 0.0625rem solid var(--cor-cinzaclaro);
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--cor-cinzaescuro);
+    background-color: var(--cor-branco);
+}
+
+section.engajamento button[type="submit"] {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+section.engajamento button[type="submit"]:hover {
+    filter: brightness(1.1);
+}
+
+/* ==========================================================================
+ESTILO DA COLUNA LATERAL DIREITA
+========================================================================== */
+aside#coluna-lateral {
+    flex: 0 0 20rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem; 
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos da Coluna Lateral */
+aside#coluna-lateral h2 {
+    font-size: 1.25rem;
+    color: var(--cor-cinzaescuro);
+    margin-bottom: 0.05rem;
+}
+
+/* Textos e Parágrafos da Coluna Lateral */
+aside#coluna-lateral p {
+    color: var(--cor-cinzaescuro);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+ESTRUTURA DO FORMULÁRIO: formulário contido na coluna lateral
+========================================================================== */
+aside#coluna-lateral form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Rótulos dos campos do formulário */
+aside#coluna-lateral label {
+    color: var(--cor-cinzaescuro);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Campos de entrada (Input, Select e Textarea) */
+aside#coluna-lateral input,
+aside#coluna-lateral select,
+aside#coluna-lateral textarea {
+    width: 100%;
+    padding: 0.625rem;
+    border: 0.0625rem solid var(--cor-cinzaclaro);
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--cor-cinzaescuro);
+    background-color: var(--cor-branco);
+}
+
+/* Estilo do Botão */
+aside#coluna-lateral button {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.75rem;
+    background-color: var(--cor-verde);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+aside#coluna-lateral button:hover {
+    filter: brightness(1.1);
+}
+
+/* ==========================================================================
+ESTILO DO RODAPÉ
+========================================================================== */
+footer#rodape {
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 1.25rem;
+    background-color: var(--cor-branco);
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--cor-cinzaescuro);
+}
