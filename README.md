@@ -34,6 +34,7 @@ O **Fika NeuroLab** nasce da união entre tecnologia, design e propósito social
 
 ## 📂 Estrutura do Repositório
 
+```text
 ├── css/
 │   └── style.css                   # Estilização global e temas de acessibilidade
 ├── js/
