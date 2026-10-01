@@ -14,7 +14,7 @@
 
 <body class="corpo"> 
 
-    <!-- Atalho de acessibilidade para leitores de ecrã -->
+    <!-- Atalho de acessibilidade -->
     <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
 
     <!-- Barra de Acessibilidade -->
@@ -24,26 +24,22 @@
         <button type="button" id="btn-alto-contraste" aria-label="Alternar alto contraste">Alto Contraste</button>
     </div>
 
-    <!-- Cabeçalho: H1 -->
+    <!-- Cabeçalho -->
     <header id="cabecalho">
         <h1>PROJETO UNICSUL EAD:<br>Fika NeuroLab</h1>
-        <!-- Cabeçalho: Logo -->      
         <img src="./img/logo.png" alt="Logo do Fika NeuroLab" class="logo-cabecalho" onerror="this.style.display='none'">
     </header>
 
-    <!-- Menu de Navegação Flutuante com Submenu e Drawer Mobile à Direita -->
+    <!-- Menu de Navegação -->
     <nav id="menu" aria-label="Menu de Navegação das Páginas">
-        <!-- Checkbox para alternar menu no mobile -->
         <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu de navegação">
         
-        <!-- Botão hambúrguer visível apenas no mobile -->
         <label for="menu-toggle" class="menu-icon">
             <span>MENU</span>
             <span>&#9776;</span>
         </label>
 
         <ul class="menu-principal">
-            <!-- Botão de fechar contido dentro de um item de lista (li) válido -->
             <li class="menu-close-container">
                 <label for="menu-toggle" class="menu-close-btn">&times;</label>
             </li>
@@ -51,7 +47,6 @@
             <li><a href="javascript:void(0)" data-pagina="inicio" class="menu-ativo">Início</a></li>
             <li>
                 <a href="javascript:void(0)" data-pagina="projetos">Projetos</a>
-                <!-- Submenu Dropdown -->
                 <ul class="submenu">
                     <li><a href="javascript:void(0)" data-pagina="projetos" data-ancora="inclusao">Inclusão Digital</a></li>
                     <li><a href="javascript:void(0)" data-pagina="projetos" data-ancora="mentorias">Mentorias</a></li>
@@ -63,14 +58,13 @@
         </ul>
     </nav>
 
-    <!-- Conteúdo Principal e Lateral estruturados com Grid de 12 colunas -->
+    <!-- Estrutura Grid -->
     <div id="interface" class="grid-container">
-        <!-- Conteúdo Injetado Dinamicamente via SPA Router no JS -->
+        <!-- Conteúdo Principal injeção via SPA -->
         <main id="conteudo-principal" class="grid-8" tabindex="-1"></main>
 
-        <!-- Coluna Lateral Direita -->
+        <!-- Coluna Lateral (exibida apenas na rota 'inicio') -->
         <aside id="coluna-lateral" class="grid-4">
-            <!-- Formulário -->            
             <h2>Precisa de Ajuda?</h2>
             <p>Entre em contacto com a nossa equipa de suporte e inclusão para tirar dúvidas sobre mentorias e parcerias.</p>
             
@@ -93,25 +87,17 @@
 
                 <button type="submit">Enviar Mensagem</button>
             </form>
-
-            <!-- Seção Sobre o Autor incorporada na coluna lateral -->
-            <div class="sobre-autor">
-                <h2>Sobre o Autor</h2>
-                <p class="autor-nome">Mateus Severiano</p>
-                <p>Sempre fui uma criança curiosa, daquelas cheias de "porquês". Aprendi a ler cedo e, aos 13 anos, encontrei no <strong>RPG Maker</strong> a forma perfeita de unir as histórias e mundos que criava na infância com a programação.</p>
-                <p>Movido pela paixão por design e tecnologia, aos 16 anos lancei meu primeiro projeto web, o <strong>Cantinho Pokémon</strong>. Hoje, sigo essa jornada acadêmica e profissional transformando ideias em meus projetos.</p>
-            </div>
         </aside>
     </div>
 
-    <!-- Rodapé da Página -->
+    <!-- Rodapé -->
     <footer id="rodape">
         <p>Copyright &copy; 2026 - Autor: Mateus Severiano |
             <br><em>Projeto UNICISUL: FIKA NEUROLAB</em>
         </p>
     </footer>
 
-    <!-- Link para o arquivo JavaScript externo -->
+    <!-- JavaScript -->
     <script src="./js/script.js"></script>
 </body>
 </html>
