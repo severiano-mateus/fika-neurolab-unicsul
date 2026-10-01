@@ -40,5 +40,5 @@ O **Fika NeuroLab** nasce da união entre tecnologia, design e propósito social
 │   └── script.js                   # Roteamento SPA, validações e manipulação de estado
 ├── img/                            # Ativos visuais e logotipos
 ├── index.html                      # Ponto de entrada da aplicação
-├── fika-neurolab-v1.0.0-alpha.zip  # Arquivo compactado com a versão inicial do projeto
+├── fika-neurolab-v1.0.1.zip        # Arquivo compactado com a versão final do projeto
 └── README.md                       # Documentação do projeto
